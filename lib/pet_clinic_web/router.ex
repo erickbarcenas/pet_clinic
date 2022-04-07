@@ -18,14 +18,52 @@ defmodule PetClinicWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    
+
     resources "/pets", PetController
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", PetClinicWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", PetClinicWeb do
+    pipe_through :api
+    resources "/pets", PetController
+  end
+
+
+  scope "/api/swagger" do
+    forward "/", PhoenixSwagger.Plug.SwaggerUI,
+      otp_app: :pet_clinic,
+      swagger_file: "swagger.json"
+  end
+
+  def swagger_info do
+    %{
+      schemes: ["http", "https", "ws", "wss"],
+      info: %{
+        version: "1.0",
+        title: "Pet Clinic",
+        description: "API Documentation for Pet Clinic v1",
+        termsOfService: "Open for public",
+        contact: %{
+          name: "Erick Bárcenas",
+          email: "barcenas.developer@gmail.com"
+        }
+      },
+      securityDefinitions: %{
+        Bearer: %{
+          type: "apiKey",
+          name: "Authorization",
+          description:
+          "API Token must be provided via `Authorization: Bearer ` header",
+      in: "header"
+        }
+      },
+      consumes: ["application/json"],
+      produces: ["application/json"],
+      tags: [
+        %{name: "Pets", description: "Pet resources"}
+      ]
+    }
+  end
 
   # Enables LiveDashboard only for development
   #
