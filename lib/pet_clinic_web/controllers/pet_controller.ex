@@ -4,6 +4,15 @@ defmodule PetClinicWeb.PetController do
   alias PetClinic.PetHealthExpert
   alias PetClinic.PetHealthExpert.Pet
 
+  import Plug.Conn.Status, only: [code: 1]
+  use PhoenixSwagger
+
+  swagger_path :index do
+    get("/")
+    description("List of pets")
+    response(code(:ok), "Success")
+  end
+
   def index(conn, _params) do
     pets = PetHealthExpert.list_pets()
     render(conn, "index.html", pets: pets)

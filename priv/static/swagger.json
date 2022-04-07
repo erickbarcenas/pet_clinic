@@ -14,7 +14,24 @@
     "title": "Pet Clinic",
     "version": "1.0"
   },
-  "paths": {},
+  "paths": {
+    "/": {
+      "get": {
+        "description": "List of pets",
+        "operationId": "PetClinicWeb.PetController.index",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Pet"
+        ]
+      }
+    }
+  },
   "produces": [
     "application/json"
   ],
