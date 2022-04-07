@@ -51,7 +51,8 @@ defmodule PetClinic.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:phoenix_swagger, "~> 0.8.3"},
-      {:ex_json_schema, "~> 0.7.1"}, # optional
+      # optional
+      {:ex_json_schema, "~> 0.7.1"},
       {:poison, "~> 3.0"}
     ]
   end

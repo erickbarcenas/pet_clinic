@@ -18,6 +18,12 @@ defmodule PetClinicWeb.PetController do
     render(conn, "index.html", pets: pets)
   end
 
+  def index_by_type(conn, params) do
+    type = params["type"]
+    pets = PetHealthExpert.list_pets_by_type(params["type"])
+    render(conn, "index_by_type.html", pets: pets, type_pet: "Dog")
+  end
+
   def new(conn, _params) do
     changeset = PetHealthExpert.change_pet(%Pet{})
     render(conn, "new.html", changeset: changeset)

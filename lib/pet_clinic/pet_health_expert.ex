@@ -22,6 +22,19 @@ defmodule PetClinic.PetHealthExpert do
   end
 
   @doc """
+  Returns the list of pets by type.
+
+  ## Examples
+
+      iex> list_pets_by_type(type)
+      [%Pet{}, ...]
+
+  """
+  def list_pets_by_type(type) do
+    Repo.all(from p in Pet, where: p.specialities == ^type)
+  end
+
+  @doc """
   Gets a single pet.
 
   Raises `Ecto.NoResultsError` if the Pet does not exist.

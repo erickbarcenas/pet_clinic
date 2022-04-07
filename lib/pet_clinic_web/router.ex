@@ -18,16 +18,19 @@ defmodule PetClinicWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-
+    get "/pets/by_type/:type", PetController, :index_by_type
     resources "/pets", PetController
   end
 
   # Other scopes may use custom stacks.
   scope "/api", PetClinicWeb do
     pipe_through :api
-    resources "/pets", PetController
+
+    
+    # resources "/pets", PetController
   end
 
+  
 
   scope "/api/swagger" do
     forward "/", PhoenixSwagger.Plug.SwaggerUI,
@@ -52,9 +55,8 @@ defmodule PetClinicWeb.Router do
         Bearer: %{
           type: "apiKey",
           name: "Authorization",
-          description:
-          "API Token must be provided via `Authorization: Bearer ` header",
-      in: "header"
+          description: "API Token must be provided via `Authorization: Bearer ` header",
+          in: "header"
         }
       },
       consumes: ["application/json"],

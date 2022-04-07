@@ -33,11 +33,10 @@ config :swoosh, :api_client, false
 config :pet_clinic, :phoenix_swagger,
   swagger_files: %{
     "priv/static/swagger.json" => [
-      router: PetClinicWeb.Router, 
+      router: PetClinicWeb.Router,
       endpoint: PetClinicWeb.Endpoint
     ]
   }
-
 
 # Configure esbuild (the version is required)
 config :esbuild,
@@ -57,7 +56,6 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 # config :phoenix, :json_library, Jason
 config :phoenix_swagger, json_library: Jason
-
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
